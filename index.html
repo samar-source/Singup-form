@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sign up</title>
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<link href="css/responsive.css" rel="stylesheet" type="text/css">
+</head>
+<body class="page">
+	<div class="wrapper">
+		<div class="inner">
+			<div class="noun"></div>
+
+			<!-- Blue column -->
+			<div class="col col_blue">
+				<h1 class="col__title">Sign&#160;up</h1>
+			</div>
+
+			<!-- Column with form -->
+			<div class="col col-with-form">
+				<form action="#" method="post" name="sign-up-form" class="form">
+
+					<!-- Form header -->
+					<div class="form__header">
+						<h2 class="form__headline">New user?</h2>
+						<p class="form__text">Use the form below&#160;to create your account.</p>
+					</div>
+
+					<!-- Form blocks -->
+					<!-- First Name -->
+					<!-- Last Name -->
+					<!-- Nationality -->
+					<!-- E-mail -->
+					<div class="form__block">
+						<label for="first-name" class="form__label">First Name</label><br>
+						<input type="text" name="first-name" id="first-name" class="form__input_all-width">
+					</div>
+					<div class="form__block">
+						<label for="last-name" class="form__label">Last Name</label><br>
+						<input type="text" name="last-name" id="last-name" class="form__input_all-width">
+					</div>
+					<div class="form__block">
+						<label for="nationality" class="form__label">Nationality</label><br>
+						<select name="nat" id="nationality" class="form__select form__input_all-width"></select>
+					</div>
+					<div class="form__block form__block-email">
+						<label for="email" class="form__label">E-mail</label><br>
+						<input type="email" name="email" id="email" class="form__input_all-width"><span id="checkmark"></span>
+					</div>
+
+					<!-- Form Select Date of Birth-->
+					<div class="form__block-select">
+						<label class="form__label">Date&#160;of Birth</label><br>
+						<div class="form__select-box">
+							<select name="day" id="day" class="form__select"></select>
+							<select name="month" id="month" class="form__select"></select>
+							<select name="year" id="year" class="form__select"></select>
+						</div>
+					</div>
+					
+					<!-- Form Radio -->
+					<!-- Gender -->
+					<div class="form__block">
+						<label class="form__label">Gender</label><br>
+						<div class="form__input-radio">
+							<input type="radio" name="input-radio" id="male">
+							<label for="male">Male</label>
+						</div>
+						<div class="form__input-radio">
+							<input type="radio" name="input-radio" id="female">
+							<label for="female">Female</label>
+						</div>
+					</div>
+
+					<!-- Form blocks -->
+					<!-- Password -->
+					<div class="form__block">
+						<label for="password" class="form__label">Password</label><br>
+						<input type="password" name="password" id="password" class="form__input_all-width">
+					</div>
+					<div class="form__block">
+						<label for="confirm-password" class="form__label">Confirm Password</label><br>
+						<input type="password" name="confirm-password" id="confirm-password" class="form__input_all-width">
+					</div>
+					
+					<!-- Form footer -->
+					<div class="form__footer">
+						<button type="submit" id="submit" class="form__button">Complete Signup</button>
+						<p class="form__text_footer">Have&#160;an account? 
+							<a href="" class="form__link">Login</a>
+						</p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
