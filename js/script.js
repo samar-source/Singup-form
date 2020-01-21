@@ -22,10 +22,73 @@ $(document).ready(function() {
  });
 });
   
- function isValidEmailAddress(emailAddress) {
-    var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-    return pattern.test(emailAddress);
- }
+ // function isValidEmailAddress(emailAddress) {
+ //    var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+ //    return pattern.test(emailAddress);
+ // }
+
+jQuery(function($) {
+  $('#form').on('submit', function(event) {
+    if (validateForm()) { //If there are errors returns true
+      event.preventDefault();
+    }
+  });
+  function validateForm() {
+    $(".text-error").remove();
+
+    //Checking first name
+    var el_l = $("#first-name");
+    if (el_l.val().length < 4) {
+      var v_first_name = true;
+      el_l.after('<span class="text-error for-first-name">The first name must be more than 3 characters</span>');
+      $(".for-first-name").css({top: el_l.position().top + el_l.outerHeight() + 2});
+    }
+    $("#first-name").toggleClass('error', v_first_name );
+
+    //Checking last name
+    var el_l = $("#last-name");
+    if (el_l.val().length < 4) {
+      var v_last_name = true;
+      el_l.after('<span class="text-error for-last-name">The last name must be more than 3 characters</span>');
+      $(".for-last-name").css({top: el_l.position().top + el_l.outerHeight() + 2});
+    }
+    $("#last-name").toggleClass('error', v_last_name );
+    
+    //Checking e-mail
+    var reg = /^\w+([\.-]?\w+)*@(((([a-z0-9]{2,})|([a-z0-9][-][a-z0-9]+))[\.][a-z0-9])|([a-z0-9]+[-]?))+[a-z0-9]+\.([a-z]{2}|(com|net|org|edu|int|mil|gov|arpa|biz|aero|name|coop|info|pro|museum))$/i;
+    var el_e = $("#email");
+    var v_email = el_e.val()?false:true;
+    if ( v_email ) {
+      el_e.after('<span class="text-error for-email">The e-mail field must be filled in</span>');
+      $(".for-email").css({top: el_e.position().top + el_e.outerHeight() + 2});
+    } else if (!reg.test( el_e.val())) {
+      v_email = true;
+      el_e.after('<span class="text-error for-email">You specified an invalid e-mail address</span>');
+      $(".for-email").css({top: el_e.position().top + el_e.outerHeight() + 2});
+    }
+    $("#email").toggleClass('error', v_email );
+    
+    //Checking passwords
+    var el_p1 = $("#password");
+    var el_p2 = $("#confirm-password");
+    var v_pass1 = el_p1.val()?false:true;
+    var v_pass2 = el_p1.val()?false:true;
+    if (el_p1.val() != el_p2.val()) {
+      var v_pass1 = true;
+      var v_pass2 = true;
+      el_p2.after('<span class="text-error for-password">Passwords don&#39;t match!</span>');
+      $(".for-password").css({top: el_p1.position().top + el_p1.outerHeight() + 2});
+    } else if (el_p1.val().length < 6) {
+      var v_pass1 = true;
+      var v_pass2 = true;
+      el_p1.after('<span class="text-error for-password">The password must be at least 6 characters long</span>');
+      $(".for-password").css({top: el_p1.position().top + el_p1.outerHeight() + 2});
+    }
+    $("#password").toggleClass('error', v_pass1 );
+    $("#confirm-password").toggleClass('error', v_pass2 );
+    return ( v_first_name || v_last_name || v_email || v_pass1 || v_pass2 );
+  }
+});
 
  // Calendar for form Select Date of Birth
 window.onload = function () {
